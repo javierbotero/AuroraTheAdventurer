@@ -1,13 +1,13 @@
 **README**
 
-# Todo List App #
+# Aurora The Adventurer #
 
-This project is about building a todo list with features such as the ability to create a project and add several todos within the project created. It has the ability to edit a todo or a project and has the ability to delete whatever project or todo that needs to be deleted. This project uses webpack to bundle up modules as there were quite a few that was used in this project. SOLID principles were also employed in delivering this project too
+Aurora the adventurer is a little girl that likes nature and explore it. Aurora will have to collect all garbage that finds on the way to the indigenous tribe, but she must be careful with the jungle because any beast can bit her and make her lose her path. This game is developed using Phaser and Webpack, with the help of ES6 modules syntax and organization. The project is being built, so some links are just placeholders.
 
 ## Live Preview
 
-[Todo list App](https://javierbotero.github.io/todolist-App/)
-![Screenshot todo list app](https://github.com/javierbotero/todolist-App/blob/development/src/assets/Screenshot%20from%202020-11-13%2021-50-54.png)
+[Aurora the Adventurer Game]()
+![Screenshot Adventurer Game]()
 
 ## Built With
 
@@ -38,12 +38,6 @@ in the terminal to install the dependencies.
 - Github: [@Javierbotero](https://github.com/javierbotero)
 - Twitter: [@Javierbotero1](https://twitter.com/Javierboterodev)
 - Linkedin: [Javierbotero](https://www.linkedin.com/in/javierboterodev/)
-
-👤 **Adewale Orotayo**
-
-- Github: [@didymus707](https://github.com/didymus707)
-- Twitter: [@didy707](https://twitter.com/didy707)
-- Linkedin: [Didymus](https://www.linkedin.com/in/adewale-thomas-orotayo/)
 
 
 ## 🤝 Contributing
