@@ -11,8 +11,8 @@ export default class Button extends Phaser.GameObjects.Container {
     this.text = this.scene.add.text(0, 0, text, { fontSize: '32px', fill: '#fff' });
     Phaser.Display.Align.In.Center(this.text, this.button);
 
-    this.add(this.text);
     this.add(this.button);
+    this.add(this.text);
 
     this.button.on('pointerdown', () => {
       this.scene.scene.start(targetScene);

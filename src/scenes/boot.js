@@ -1,4 +1,4 @@
-import nature from '../assets/nature.png';
+import Aurora from '../assets/aurora.png';
 
 export default class Boot extends Phaser.Scene {
   constructor() {
@@ -6,7 +6,7 @@ export default class Boot extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('nature', nature);
+    this.load.image('nature', Aurora);
   }
 
   create() {

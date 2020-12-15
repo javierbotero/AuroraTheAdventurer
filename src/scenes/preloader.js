@@ -1,6 +1,10 @@
 import Aurora from '../assets/aurora.png';
 import Btn1 from '../assets/btn1.png';
 import Btn2 from '../assets/btn2.png';
+import MyCharacter from '../assets/girl2.png';
+import Grass from '../assets/map/grass.png';
+import Trees from '../assets/map/tree.png';
+import MyMap from '../assets/map/jungle2.json';
 
 export default class Preloader extends Phaser.Scene {
   constructor() {
@@ -12,6 +16,10 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('btn1', Btn1);
     this.load.image('btn2', Btn2);
     this.time.delayedCall(3000, this.ready, [], this);
+    this.load.spritesheet('character', MyCharacter, { frameWidth: 41, frameHeight: 43 });
+    this.load.image('Trees', Trees);
+    this.load.image('Grass', Grass);
+    this.load.tilemapTiledJSON('map', MyMap);
   }
 
   create() {

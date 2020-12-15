@@ -3,10 +3,15 @@ import Boot from './scenes/boot';
 import Preloader from './scenes/preloader';
 import Menu from './scenes/title';
 import Game from './scenes/game';
+import './assets/style.scss';
+
+const parent = document.createElement('div');
+parent.setAttribute('id', 'parentId');
+parent.classList = 'parent';
 
 const config = {
   type: Phaser.AUTO,
-  parent: 'Parent',
+  parent: 'parentId',
   width: 800,
   height: 600,
   physics: {
@@ -15,6 +20,9 @@ const config = {
       gravity: { y: 0 },
       debug: true,
     },
+  },
+  scale: {
+    mode: Phaser.Scale.FIT,
   },
 };
 
@@ -30,3 +38,4 @@ class TheAdventurer extends Phaser.Game {
 }
 
 const game = new TheAdventurer();
+document.body.appendChild(parent);
