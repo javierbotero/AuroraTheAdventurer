@@ -5,6 +5,7 @@ import MyCharacter from '../assets/girl2.png';
 import Grass from '../assets/map/grass.png';
 import Trees from '../assets/map/tree.png';
 import MyMap from '../assets/map/jungle2.json';
+import Garbage from '../assets/map/garbage.png';
 
 export default class Preloader extends Phaser.Scene {
   constructor() {
@@ -19,6 +20,7 @@ export default class Preloader extends Phaser.Scene {
     this.load.spritesheet('character', MyCharacter, { frameWidth: 41, frameHeight: 43 });
     this.load.image('Trees', Trees);
     this.load.image('Grass', Grass);
+    this.load.image('Garbage', Garbage);
     this.load.tilemapTiledJSON('map', MyMap);
   }
 

@@ -4,6 +4,7 @@ import Preloader from './scenes/preloader';
 import Menu from './scenes/title';
 import Game from './scenes/game';
 import './assets/style.scss';
+import Data from './data';
 
 const parent = document.createElement('div');
 parent.setAttribute('id', 'parentId');
@@ -29,6 +30,8 @@ const config = {
 class TheAdventurer extends Phaser.Game {
   constructor() {
     super(config);
+    const myData = new Data();
+    this.globals = { myData };
     this.scene.add('Boot', Boot);
     this.scene.add('Preloader', Preloader);
     this.scene.add('Menu', Menu);

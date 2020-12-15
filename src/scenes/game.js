@@ -3,12 +3,26 @@ export default class Game extends Phaser.Scene {
     super('Game');
   }
 
+  removeGarbage(player, can) {
+    can.destroy(can.x, can.y);
+  }
+
   create () {
     const map = this.make.tilemap({ key: 'map' });
     const trees = map.addTilesetImage('delimiter1', 'Trees');
     const grass = map.addTilesetImage('nature', 'Grass');
+    const cans = map.getObjectLayer('cans')['objects'];
     const grassLayer = map.createStaticLayer('grass', grass, 0, 0);
     const treesLayer = map.createStaticLayer('trees', trees, 0, 0);
+    const garbage = this.physics.add.staticGroup();
+    cans.forEach((can) => {
+      const object = garbage.create(can.x, can.y, 'Garbage');
+      // object.setScale(can.width / 16, can.height / 16);
+      object.setOffset(50, 50);
+      object.setOrigin(0);
+      object.body.width = can.width;
+      object.body.height = can.height;
+    });
     treesLayer.setCollisionByProperty({ collides: true });
     console.log(this);
     console.log(map);
@@ -17,10 +31,13 @@ export default class Game extends Phaser.Scene {
     this.physics.world.bounds.height = map.heightInPixels;
     this.player.setCollideWorldBounds(true);
     this.physics.add.collider(this.player, treesLayer);
+    this.physics.add.overlap(this.player, garbage, this.removeGarbage, null, this);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
+    let text = this.add.text(100, 100, `Score: ${this.sys.game.globals.myData.score}`, { fontSize: '20px', fill: '#ffffff' });
+    text.setScrollFactor(0);
     this.anims.create({
       key: 'left',
       frames: this.anims.generateFrameNumbers('character', { frames: [4, 5, 6, 7] }),
