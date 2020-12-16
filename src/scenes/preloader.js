@@ -22,14 +22,20 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('Grass', Grass);
     this.load.image('Garbage', Garbage);
     this.load.tilemapTiledJSON('map', MyMap);
+    this.myCanvas = this.sys.game.canvas;
   }
 
   create() {
-    this.add.image(400, 200, 'nature');
-    this.add.text(100, 100, 'Aurora The Adventurer', { fontFamily: 'Georgia, serif', fill: '#0f0' });
+    const { width, height } = this.myCanvas;
+    this.add.image(400, 200, 'Aurora');
+    const title = this.add.text(width / 2, height / 2 + 100, 'Aurora the Adventurer');
+    title.style.fontSize = 100;
+    title.setOrigin(title.halfWidth, title.halfHeight);
+    console.log(title);
+    console.log(this);
   }
 
   ready() {
     this.scene.start('Menu');
   }
-};
+}

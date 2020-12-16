@@ -6,7 +6,7 @@ export default class Boot extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('nature', Aurora);
+    this.load.image('Aurora', Aurora);
   }
 
   create() {

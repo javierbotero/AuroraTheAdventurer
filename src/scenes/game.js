@@ -1,4 +1,5 @@
 import 'phaser';
+import { postScore } from '../retrieveLeaderBoard';
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -68,7 +69,7 @@ export default class Game extends Phaser.Scene {
       repeat: -1,
     });
     this.time.addEvent({
-      delay: 3000,
+      delay: 8000,
       callback: this.gameOver,
       callbackScope: this,
     });
@@ -93,10 +94,17 @@ export default class Game extends Phaser.Scene {
     }
   }
 
-  gameOver() {
-    // take score and name post to leaderboard
-    
-    // start leaderboard scene
+  async gameOver() {
+    const name = localStorage.getItem('username');
+    if (this.sys.game.globals.myData.score > 0) {
+      if (!localStorage.getItem('bestScore')) {
+        localStorage.setItem('bestScore', this.sys.game.globals.myData.score);
+        await postScore(name, this.sys.game.globals.myData.score);
+      } else if (this.sys.game.globals.myData.score > localStorage.getItem('bestScore')) {
+        localStorage.setItem('bestScore', this.sys.game.globals.myData.score);
+        await postScore(name, this.sys.game.globals.myData.score);
+      }
+    }
     this.scene.start('LeaderBoard');
   }
 }
