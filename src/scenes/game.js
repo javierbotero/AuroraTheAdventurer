@@ -18,9 +18,12 @@ export default class Game extends Phaser.Scene {
     const map = this.make.tilemap({ key: 'map' });
     const trees = map.addTilesetImage('delimiter1', 'Trees');
     const grass = map.addTilesetImage('nature', 'Grass');
+    const hut = map.addTilesetImage('hut', 'Hut');
     const cans = map.getObjectLayer('cans')['objects'];
+    const endGame = map.getObjectLayer('endGame')['objects'];
     const grassLayer = map.createStaticLayer('grass', grass, 0, 0);
     const treesLayer = map.createStaticLayer('trees', trees, 0, 0);
+    const hutLayer = map.createStaticLayer('Hut', hut, 0, 0);
     const garbage = this.physics.add.staticGroup();
     cans.forEach((can) => {
       const object = garbage.create(can.x, can.y, 'Garbage');
@@ -30,6 +33,12 @@ export default class Game extends Phaser.Scene {
       object.body.width = can.width;
       object.body.height = can.height;
     });
+    const endPoints = this.physics.add.staticGroup();
+    endGame.forEach((point) => {
+      const p = endPoints.create(point.x, point.y).setOrigin(0);
+      p.body.width = point.width;
+      p.body.height = point.height;
+    });
     treesLayer.setCollisionByProperty({ collides: true });
     console.log(this);
     this.player = this.physics.add.sprite(200, 100, 'character', 0);
@@ -38,6 +47,7 @@ export default class Game extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
     this.physics.add.collider(this.player, treesLayer);
     this.physics.add.overlap(this.player, garbage, this.removeGarbage, null, this);
+    this.physics.add.overlap(this.player, endPoints, this.gameWin, null, this);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(this.player);
@@ -69,7 +79,7 @@ export default class Game extends Phaser.Scene {
       repeat: -1,
     });
     this.time.addEvent({
-      delay: 8000,
+      delay: 1000 * 60 * 5,
       callback: this.gameOver,
       callbackScope: this,
     });
@@ -78,16 +88,16 @@ export default class Game extends Phaser.Scene {
   update(time, delta) {
     this.player.body.setVelocity(0);
     if (this.cursors.left.isDown) {
-      this.player.body.setVelocityX(-100);
+      this.player.body.setVelocityX(-200);
       this.player.anims.play('left', true);
     } else if (this.cursors.right.isDown) {
-      this.player.body.setVelocityX(100);
+      this.player.body.setVelocityX(200);
       this.player.anims.play('right', true);
     } else if (this.cursors.up.isDown) {
-      this.player.body.setVelocityY(-100);
+      this.player.body.setVelocityY(-200);
       this.player.anims.play('up', true);
     } else if (this.cursors.down.isDown) {
-      this.player.body.setVelocity(100);
+      this.player.body.setVelocityY(200);
       this.player.anims.play('down', true);
     } else {
       this.player.anims.stop();
@@ -106,5 +116,10 @@ export default class Game extends Phaser.Scene {
       }
     }
     this.scene.start('LeaderBoard');
+  }
+
+  gameWin() {
+    this.sys.game.globals.myData.score += 100;
+    this.gameOver();
   }
 }

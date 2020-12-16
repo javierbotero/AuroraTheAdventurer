@@ -4,8 +4,10 @@ import Btn2 from '../assets/btn2.png';
 import MyCharacter from '../assets/girl2.png';
 import Grass from '../assets/map/grass.png';
 import Trees from '../assets/map/tree.png';
+import Hut from '../assets/map/hut.png';
 import MyMap from '../assets/map/jungle2.json';
 import Garbage from '../assets/map/garbage.png';
+import Robot from '../assets/robot.png';
 
 export default class Preloader extends Phaser.Scene {
   constructor() {
@@ -21,14 +23,16 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('Trees', Trees);
     this.load.image('Grass', Grass);
     this.load.image('Garbage', Garbage);
+    this.load.image('Hut', Hut);
     this.load.tilemapTiledJSON('map', MyMap);
     this.myCanvas = this.sys.game.canvas;
+    this.load.image('robot', Robot);
   }
 
   create() {
     const { width, height } = this.myCanvas;
     this.add.image(400, 200, 'Aurora');
-    const title = this.add.text(width / 2, height / 2 + 100, 'Aurora the Adventurer');
+    const title = this.add.text(width / 2, height / 2 + 100, 'Aurora the Adventurer', { fontFamily: 'Georgia, serif', fontSize: 60 });
     title.style.fontSize = 100;
     title.setOrigin(title.halfWidth, title.halfHeight);
     console.log(title);
