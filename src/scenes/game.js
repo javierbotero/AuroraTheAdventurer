@@ -5,6 +5,10 @@ export default class Game extends Phaser.Scene {
 
   removeGarbage(player, can) {
     can.destroy(can.x, can.y);
+    this.sys.game.globals.myData.score += 1;
+    this.myText.setText(`Score: ${this.sys.game.globals.myData.score}`);
+    console.log(this.sys.game.globals.myData.score);
+    console.log(this.sys.game.globals.myData.textScore);
   }
 
   create () {
@@ -36,8 +40,8 @@ export default class Game extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
-    let text = this.add.text(100, 100, `Score: ${this.sys.game.globals.myData.score}`, { fontSize: '20px', fill: '#ffffff' });
-    text.setScrollFactor(0);
+    this.myText = this.add.text(100, 100, this.sys.game.globals.myData.textScore, { fontSize: '20px', fill: '#ffffff' });
+    this.myText.setScrollFactor(0);
     this.anims.create({
       key: 'left',
       frames: this.anims.generateFrameNumbers('character', { frames: [4, 5, 6, 7] }),
