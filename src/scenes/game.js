@@ -1,3 +1,5 @@
+import 'phaser';
+
 export default class Game extends Phaser.Scene {
   constructor() {
     super('Game');
@@ -11,7 +13,7 @@ export default class Game extends Phaser.Scene {
     console.log(this.sys.game.globals.myData.textScore);
   }
 
-  create () {
+  create() {
     const map = this.make.tilemap({ key: 'map' });
     const trees = map.addTilesetImage('delimiter1', 'Trees');
     const grass = map.addTilesetImage('nature', 'Grass');
@@ -29,7 +31,6 @@ export default class Game extends Phaser.Scene {
     });
     treesLayer.setCollisionByProperty({ collides: true });
     console.log(this);
-    console.log(map);
     this.player = this.physics.add.sprite(200, 100, 'character', 0);
     this.physics.world.bounds.width = map.widthInPixels;
     this.physics.world.bounds.height = map.heightInPixels;
@@ -66,6 +67,11 @@ export default class Game extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
+    this.time.addEvent({
+      delay: 3000,
+      callback: this.gameOver,
+      callbackScope: this,
+    });
   }
 
   update(time, delta) {
@@ -85,5 +91,12 @@ export default class Game extends Phaser.Scene {
     } else {
       this.player.anims.stop();
     }
+  }
+
+  gameOver() {
+    // take score and name post to leaderboard
+    // start leaderboard scene
+    console.log(this);
+    this.scene.start('LeaderBoard');
   }
 }

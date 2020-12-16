@@ -3,6 +3,7 @@ import Boot from './scenes/boot';
 import Preloader from './scenes/preloader';
 import Menu from './scenes/title';
 import Game from './scenes/game';
+import Leader from './scenes/leaderboard';
 import './assets/style.scss';
 import Data from './data';
 
@@ -36,6 +37,7 @@ class TheAdventurer extends Phaser.Game {
     this.scene.add('Preloader', Preloader);
     this.scene.add('Menu', Menu);
     this.scene.add('Game', Game);
+    this.scene.add('LeaderBoard', Leader);
     this.scene.start('Boot');
   }
 }
