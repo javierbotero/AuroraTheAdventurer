@@ -95,8 +95,8 @@ export default class Game extends Phaser.Scene {
 
   gameOver() {
     // take score and name post to leaderboard
+    
     // start leaderboard scene
-    console.log(this);
     this.scene.start('LeaderBoard');
   }
 }
