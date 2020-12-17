@@ -4,5 +4,6 @@ export default class Data {
     this.sounds = true;
     this.textScore = `Score: ${this.score}`;
     this.leaderBoard = {};
+    this.url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/TXevdkyj2AGHb2tBY35Y/scores/';
   }
 }

@@ -2,6 +2,8 @@
 import { getScore } from '../retrieveLeaderBoard';
 import Button from '../button/button';
 
+const fetch = require('node-fetch');
+
 export default class LeaderBoard extends Phaser.Scene {
   constructor() {
     super('LeaderBoard');
@@ -14,7 +16,7 @@ export default class LeaderBoard extends Phaser.Scene {
   create() {
     const { width } = this.myCanvas;
     this.add.text(100, 100, 'LEADERBOARD PLAYERS', { boundsAlignH: 'center' });
-    getScore().then((data) => {
+    getScore(fetch, this.sys.game.globals.myData.url).then((data) => {
       const score = data.result.sort((a, b) => b.score - a.score);
       let y = 200;
       for (let i = 0; i < score.length; i += 1) {

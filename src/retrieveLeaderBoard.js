@@ -1,6 +1,4 @@
-const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/TXevdkyj2AGHb2tBY35Y/scores/';
-
-const postScore = async (username, score) => {
+const postScore = async (username, score, cbfetch, url) => {
   const data = {
     user: username,
     score,
@@ -15,16 +13,16 @@ const postScore = async (username, score) => {
     body: JSON.stringify(data),
   };
 
-  const retrieve = await fetch(url, init)
+  const retrieve = await cbfetch(url, init)
     .then((data) => data.json())
     .catch(err => err);
 
   return retrieve;
 };
 
-const getScore = async () => {
-  const retrieve = await fetch(url)
-    .then(data => data.json())
+const getScore = async (cbfetch, url) => {
+  const retrieve = await cbfetch(url)
+    .then((data) => data.json())
     .catch(err => err);
 
   return retrieve;

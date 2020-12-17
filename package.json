@@ -19,7 +19,6 @@
     "babel-eslint": "10.1.x",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "css-loader": "^5.0.1",
     "eslint": "6.8.x",
@@ -28,6 +27,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.6.3",
+    "jest-canvas-mock": "^2.3.0",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
@@ -40,7 +40,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
-    "phaser": "^3.24.1"
+    "babel-polyfill": "^6.26.0",
+    "node-fetch": "^2.6.1",
+    "phaser": "^3.24.1",
+    "regenerator-runtime": "^0.13.7"
   },
   "jest": {
     "moduleNameMapper": {
@@ -49,6 +52,12 @@
     },
     "transform": {
       "\\.[jt]sx?$": "babel-jest"
-    }
+    },
+    "setupFilesAfterEnv": [
+      "./src/setupTests.js"
+    ],
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
   }
 }

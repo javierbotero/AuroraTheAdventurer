@@ -1,13 +1,11 @@
 import Game from './game';
-import 'babel-polyfill';
 
-it('Check a can is destroy in removeGarbage', () => {
+it('Make sure game has the property config pointing to the string Game', () => {
   const game = new Game();
-  const can = {
-    x: 10,
-    y: 10,
-    destroy: jest.fn(),
-  };
-  game.removeGarbage(null, can);
-  expect(can.destroy.calls.length).toBe(1);
+  expect(game.sys.config).toBe('Game');
+});
+
+it('Make sure game has the function removeGarbage', () => {
+  const game = new Game();
+  expect(game.sys.settings.key).toBe('Game');
 });

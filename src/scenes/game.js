@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
-// import 'phaser';
 import { postScore } from '../retrieveLeaderBoard';
+
+const fetch = require('node-fetch');
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -9,11 +10,12 @@ export default class Game extends Phaser.Scene {
 
   removeGarbage(player, can) {
     can.destroy(can.x, can.y);
-    this.sys.game.globals.myData.score += 1;
-    this.myText.setText(`Score: ${this.sys.game.globals.myData.score}`);
+    this.myScore += 1;
+    this.myText.setText(`Score: ${this.myScore}`);
   }
 
   create() {
+    this.myScore = 0;
     const map = this.make.tilemap({ key: 'map' });
     const trees = map.addTilesetImage('delimiter1', 'Trees');
     const grass = map.addTilesetImage('nature', 'Grass');
@@ -114,14 +116,14 @@ export default class Game extends Phaser.Scene {
 
   async gameOver() {
     const name = localStorage.getItem('username');
-    if (this.sys.game.globals.myData.score > 0) {
+    if (this.myScore > 0) {
       try {
         if (!localStorage.getItem('bestScore')) {
-          localStorage.setItem('bestScore', this.sys.game.globals.myData.score);
-          await postScore(name, this.sys.game.globals.myData.score);
-        } else if (this.sys.game.globals.myData.score > localStorage.getItem('bestScore')) {
-          localStorage.setItem('bestScore', this.sys.game.globals.myData.score);
-          await postScore(name, this.sys.game.globals.myData.score);
+          localStorage.setItem('bestScore', this.myScore);
+          await postScore(name, this.myScore, fetch, this.sys.game.globals.myData.url);
+        } else if (this.myScore > localStorage.getItem('bestScore')) {
+          localStorage.setItem('bestScore', this.myScore);
+          await postScore(name, this.myScore, fetch, this.sys.game.globals.myData.url);
         }
       } catch (error) {
         const errorDiv = document.createElement('div');
@@ -134,7 +136,7 @@ export default class Game extends Phaser.Scene {
   }
 
   gameWin() {
-    this.sys.game.globals.myData.score += 100;
+    this.myScore += 100;
     this.gameOver();
   }
 
