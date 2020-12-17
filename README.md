@@ -6,7 +6,7 @@ Aurora the adventurer is a little girl that likes nature and explore it. Aurora 
 
 ## Live Preview
 
-[Aurora the Adventurer Game]()
+[Aurora the Adventurer Game](https://javierbotero.github.io/AuroraTheAdventurer/)
 ![Screenshot Adventurer Game](./src/assets/gamePic.png)
 
 ## Built With
