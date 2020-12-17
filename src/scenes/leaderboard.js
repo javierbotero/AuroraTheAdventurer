@@ -12,9 +12,6 @@ export default class LeaderBoard extends Phaser.Scene {
   }
 
   create() {
-    if (document.getElementById('error-div')) {
-      document.body.removeChild(document.getElementById('error-div'));
-    }
     const { width } = this.myCanvas;
     this.add.text(100, 100, 'LEADERBOARD PLAYERS', { boundsAlignH: 'center' });
     getScore().then((data) => {
