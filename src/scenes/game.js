@@ -10,8 +10,6 @@ export default class Game extends Phaser.Scene {
     can.destroy(can.x, can.y);
     this.sys.game.globals.myData.score += 1;
     this.myText.setText(`Score: ${this.sys.game.globals.myData.score}`);
-    console.log(this.sys.game.globals.myData.score);
-    console.log(this.sys.game.globals.myData.textScore);
   }
 
   create() {
@@ -21,13 +19,13 @@ export default class Game extends Phaser.Scene {
     const hut = map.addTilesetImage('hut', 'Hut');
     const cans = map.getObjectLayer('cans')['objects'];
     const endGame = map.getObjectLayer('endGame')['objects'];
+    const tileBot = map.getObjectLayer('bot')['objects'];
     const grassLayer = map.createStaticLayer('grass', grass, 0, 0);
     const treesLayer = map.createStaticLayer('trees', trees, 0, 0);
     const hutLayer = map.createStaticLayer('Hut', hut, 0, 0);
     const garbage = this.physics.add.staticGroup();
     cans.forEach((can) => {
       const object = garbage.create(can.x, can.y, 'Garbage');
-      // object.setScale(can.width / 16, can.height / 16);
       object.setOffset(50, 50);
       object.setOrigin(0);
       object.body.width = can.width;
@@ -41,13 +39,23 @@ export default class Game extends Phaser.Scene {
     });
     treesLayer.setCollisionByProperty({ collides: true });
     console.log(this);
+    this.activatorRobot = this.physics.add.staticGroup();
+    tileBot.forEach((bot) => {
+      const b = this.activatorRobot.create(bot.x, bot.y).setOrigin(0);
+      b.body.width = bot.width;
+      b.body.height = bot.height;
+    });
     this.player = this.physics.add.sprite(200, 100, 'character', 0);
+    this.myRobots = this.physics.add.group();
+    this.physics.add.collider(this.player, this.myRobots, this.hitRobot, null, this);
     this.physics.world.bounds.width = map.widthInPixels;
     this.physics.world.bounds.height = map.heightInPixels;
     this.player.setCollideWorldBounds(true);
     this.physics.add.collider(this.player, treesLayer);
+    this.physics.add.collider(this.myRobots, treesLayer);
     this.physics.add.overlap(this.player, garbage, this.removeGarbage, null, this);
     this.physics.add.overlap(this.player, endPoints, this.gameWin, null, this);
+    this.physics.add.overlap(this.player, this.activatorRobot, this.releaseRobot, null, this);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(this.player);
@@ -121,5 +129,22 @@ export default class Game extends Phaser.Scene {
   gameWin() {
     this.sys.game.globals.myData.score += 100;
     this.gameOver();
+  }
+
+  hitRobot(player, robot) {
+    this.physics.pause();
+    player.setTint(0x0000ff);
+    robot.setTint(0x0000ff);
+    player.anims.play('down');
+    this.gameOver();
+  }
+
+  releaseRobot(player, activator) {
+    const x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+    const y = (player.y < 300) ? Phaser.Math.Between(300, 600) : Phaser.Math.Between(0, 300);
+    const bomb = this.myRobots.create(x, y, 'robot');
+    bomb.setCollideWorldBounds(true);
+    bomb.setVelocity(Phaser.Math.Between(-100, 100), 100);
+    console.log('release Robot');
   }
 }

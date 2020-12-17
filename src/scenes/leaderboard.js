@@ -13,7 +13,7 @@ export default class LeaderBoard extends Phaser.Scene {
   create() {
     const { width, height } = this.myCanvas;
     this.add.text(100, 100, 'LEADERBOARD PLAYERS', { boundsAlignH: 'center' });
-    getScore().then(data => {
+    getScore().then((data) => {
       const score = data.result.sort((a, b) => b.score - a.score);
       let y = 200;
       for (let i = 0; i < score.length; i += 1) {
