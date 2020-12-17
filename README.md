@@ -12,6 +12,7 @@ Aurora the adventurer is a little girl that likes nature and explore it. Aurora 
 ## Built With
 
 - Phaser
+- Tiled
 - Webpack
 - Javascript
 - CSS
@@ -58,6 +59,17 @@ And you will be ready to play in your local environment
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
+
+## Designs
+
+- Design of the character made by diamonddmgirl
+[more of her work on opengameart.org](https://opengameart.org/users/diamonddmgirl)
+
+- Recycle items art by Clint Bellanger
+[more of his work on opengameart.org](https://opengameart.org/content/recycle-items-set)
+
+- Design of the character spider bot by san2356
+[more of his work on opengameart.org](https://opengameart.org/users/san2356)
 
 ## Show your support
 
