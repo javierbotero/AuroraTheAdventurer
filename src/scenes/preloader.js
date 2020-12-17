@@ -9,6 +9,7 @@ import MyMap from '../assets/map/jungle2.json';
 import Garbage from '../assets/map/garbage.png';
 import Robot from '../assets/robot.png';
 
+// eslint-disable-next-line no-undef
 export default class Preloader extends Phaser.Scene {
   constructor() {
     super('Preloader');
@@ -35,8 +36,6 @@ export default class Preloader extends Phaser.Scene {
     const title = this.add.text(width / 2, height / 2 + 100, 'Aurora the Adventurer', { fontFamily: 'Georgia, serif', fontSize: 60 });
     title.style.fontSize = 100;
     title.setOrigin(title.halfWidth, title.halfHeight);
-    console.log(title);
-    console.log(this);
   }
 
   ready() {

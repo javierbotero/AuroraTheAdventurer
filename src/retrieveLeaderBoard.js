@@ -17,9 +17,7 @@ const postScore = async (username, score) => {
 
   const retrieve = await fetch(url, init)
     .then((data) => data.json())
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(err => err);
 
   return retrieve;
 };
@@ -27,9 +25,7 @@ const postScore = async (username, score) => {
 const getScore = async () => {
   const retrieve = await fetch(url)
     .then(data => data.json())
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(err => err);
 
   return retrieve;
 };

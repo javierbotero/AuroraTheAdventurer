@@ -1,7 +1,9 @@
+import 'phaser';
 import Button from '../button/button';
 
+// eslint-disable-next-line no-undef
 export default class Menu extends Phaser.Scene {
-  constructor () {
+  constructor() {
     super('Menu');
   }
 
@@ -18,7 +20,6 @@ export default class Menu extends Phaser.Scene {
     this.button2.scale = 0.2;
     this.button2.list[0].scaleX = 2;
     this.button2.list[1].style.fontSize = '50px';
-    console.log(this.button2);
     if (!localStorage.getItem('username')) {
       this.button.setVisible(false);
       const container = document.createElement('form');

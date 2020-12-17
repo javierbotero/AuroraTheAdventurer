@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import 'phaser';
 import { postScore } from '../retrieveLeaderBoard';
 
@@ -17,12 +18,12 @@ export default class Game extends Phaser.Scene {
     const trees = map.addTilesetImage('delimiter1', 'Trees');
     const grass = map.addTilesetImage('nature', 'Grass');
     const hut = map.addTilesetImage('hut', 'Hut');
-    const cans = map.getObjectLayer('cans')['objects'];
-    const endGame = map.getObjectLayer('endGame')['objects'];
-    const tileBot = map.getObjectLayer('bot')['objects'];
-    const grassLayer = map.createStaticLayer('grass', grass, 0, 0);
+    const cans = map.getObjectLayer('cans').objects;
+    const endGame = map.getObjectLayer('endGame').objects;
+    const tileBot = map.getObjectLayer('bot').objects;
+    map.createStaticLayer('grass', grass, 0, 0);
     const treesLayer = map.createStaticLayer('trees', trees, 0, 0);
-    const hutLayer = map.createStaticLayer('Hut', hut, 0, 0);
+    map.createStaticLayer('Hut', hut, 0, 0);
     const garbage = this.physics.add.staticGroup();
     cans.forEach((can) => {
       const object = garbage.create(can.x, can.y, 'Garbage');
@@ -38,7 +39,6 @@ export default class Game extends Phaser.Scene {
       p.body.height = point.height;
     });
     treesLayer.setCollisionByProperty({ collides: true });
-    console.log(this);
     this.activatorRobot = this.physics.add.staticGroup();
     tileBot.forEach((bot) => {
       const b = this.activatorRobot.create(bot.x, bot.y).setOrigin(0);
@@ -93,7 +93,7 @@ export default class Game extends Phaser.Scene {
     });
   }
 
-  update(time, delta) {
+  update() {
     this.player.body.setVelocity(0);
     if (this.cursors.left.isDown) {
       this.player.body.setVelocityX(-200);
@@ -139,12 +139,11 @@ export default class Game extends Phaser.Scene {
     this.gameOver();
   }
 
-  releaseRobot(player, activator) {
+  releaseRobot(player) {
     const x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
     const y = (player.y < 300) ? Phaser.Math.Between(300, 600) : Phaser.Math.Between(0, 300);
     const bomb = this.myRobots.create(x, y, 'robot');
     bomb.setCollideWorldBounds(true);
     bomb.setVelocity(Phaser.Math.Between(-100, 100), 100);
-    console.log('release Robot');
   }
 }

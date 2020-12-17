@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import 'phaser';
 import Boot from './scenes/boot';
 import Preloader from './scenes/preloader';
@@ -20,7 +21,6 @@ const config = {
     default: 'arcade',
     arcade: {
       gravity: { y: 0 },
-      debug: true,
     },
   },
   scale: {
@@ -42,5 +42,6 @@ class TheAdventurer extends Phaser.Game {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 const game = new TheAdventurer();
 document.body.appendChild(parent);
