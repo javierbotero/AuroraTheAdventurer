@@ -12,6 +12,9 @@ export default class Menu extends Phaser.Scene {
   }
 
   create() {
+    if (document.getElementById('error-div')) {
+      document.body.removeChild(document.getElementById('error-div'));
+    }
     const { width, height } = this.myCanvas;
     this.add.image(100, 100, 'Aurora');
     this.button = new Button(this, width / 2, height / 2 - 100, 'btn1', 'btn2', 'Play', 'Game');

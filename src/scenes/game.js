@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import 'phaser';
+// import 'phaser';
 import { postScore } from '../retrieveLeaderBoard';
 
 export default class Game extends Phaser.Scene {
@@ -115,12 +115,19 @@ export default class Game extends Phaser.Scene {
   async gameOver() {
     const name = localStorage.getItem('username');
     if (this.sys.game.globals.myData.score > 0) {
-      if (!localStorage.getItem('bestScore')) {
-        localStorage.setItem('bestScore', this.sys.game.globals.myData.score);
-        await postScore(name, this.sys.game.globals.myData.score);
-      } else if (this.sys.game.globals.myData.score > localStorage.getItem('bestScore')) {
-        localStorage.setItem('bestScore', this.sys.game.globals.myData.score);
-        await postScore(name, this.sys.game.globals.myData.score);
+      try {
+        if (!localStorage.getItem('bestScore')) {
+          localStorage.setItem('bestScore', this.sys.game.globals.myData.score);
+          await postScore(name, this.sys.game.globals.myData.score);
+        } else if (this.sys.game.globals.myData.score > localStorage.getItem('bestScore')) {
+          localStorage.setItem('bestScore', this.sys.game.globals.myData.score);
+          await postScore(name, this.sys.game.globals.myData.score);
+        }
+      } catch (error) {
+        const errorDiv = document.createElement('div');
+        errorDiv.setAttribute('id', 'error-div');
+        errorDiv.innerHTML = 'We experienced some error saving your score';
+        document.body.appendChild(errorDiv);
       }
     }
     this.scene.start('LeaderBoard');
