@@ -42,7 +42,7 @@ In order to start with the project:
 in the terminal to install the dependencies.
 5. Run
 ```
-  npm run webpack
+  npm run watch
 ```
 And you will be ready to play in your local environment
 
