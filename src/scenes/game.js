@@ -114,11 +114,16 @@ export default class Game extends Phaser.Scene {
     } else {
       this.player.anims.stop();
     }
-    this.arrowLeft.on('pointerdown', () => {
+    if(this.arrowLeft.isDown) {
       this.arrowLeft.setTexture('arrow2');
       this.player.body.setVelocityX(-200);
       this.player.anims.play('left', true);
-    });
+    }
+    // this.arrowLeft.on('pointerover', () => {
+    //   this.arrowLeft.setTexture('arrow2');
+    //   this.player.body.setVelocityX(-200);
+    //   this.player.anims.play('left', true);
+    // });
   }
 
   async gameOver() {
