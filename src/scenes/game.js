@@ -114,7 +114,7 @@ export default class Game extends Phaser.Scene {
     } else {
       this.player.anims.stop();
     }
-    this.arrowLeft.on('gameobjectdown', () => {
+    this.arrowLeft.on('pointerdown', () => {
       this.arrowLeft.setTexture('arrow2');
       this.player.body.setVelocityX(-200);
       this.player.anims.play('left', true);
