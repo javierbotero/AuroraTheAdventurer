@@ -1,11 +1,16 @@
 /* eslint-disable no-undef */
 import { postScore } from '../retrieveLeaderBoard';
+import Arrow from './arrows';
 
 const fetch = require('node-fetch');
 
 export default class Game extends Phaser.Scene {
   constructor() {
     super('Game');
+  }
+
+  preload() {
+    this.myCanvas = this.sys.game.canvas;
   }
 
   removeGarbage(player, can) {
@@ -87,6 +92,9 @@ export default class Game extends Phaser.Scene {
       callbackScope: this,
     });
     this.myInterval = setInterval(() => { this.releaseRobot(this.player); }, 3000);
+    const { width, height } = this.myCanvas;
+    this.arrowLeft = this.physics.add.sprite(width / 2, height - 100, 'arrow1').setInteractive();
+    console.log(this.arrowLeft);
   }
 
   update() {
@@ -106,9 +114,15 @@ export default class Game extends Phaser.Scene {
     } else {
       this.player.anims.stop();
     }
+    this.arrowLeft.on('gameobjectdown', () => {
+      this.arrowLeft.setTexture('arrow2');
+      this.player.body.setVelocityX(-200);
+      this.player.anims.play('left', true);
+    });
   }
 
   async gameOver() {
+    clearInterval(this.myInterval);
     const name = localStorage.getItem('username');
     if (this.myScore > 0) {
       try {

@@ -8,6 +8,8 @@ import Hut from '../assets/map/hut.png';
 import MyMap from '../assets/map/jungle2.json';
 import Garbage from '../assets/map/garbage.png';
 import Robot from '../assets/robot.png';
+import Arrow1 from '../assets/arrow1.png';
+import Arrow2 from '../assets/arrow2.png';
 
 // eslint-disable-next-line no-undef
 export default class Preloader extends Phaser.Scene {
@@ -28,6 +30,8 @@ export default class Preloader extends Phaser.Scene {
     this.load.tilemapTiledJSON('map', MyMap);
     this.myCanvas = this.sys.game.canvas;
     this.load.image('robot', Robot);
+    this.load.image('arrow1', Arrow1);
+    this.load.image('arrow2', Arrow2);
   }
 
   create() {
