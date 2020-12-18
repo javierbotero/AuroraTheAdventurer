@@ -4,27 +4,60 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "jest": "jest --watch *.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.10",
     "babel-eslint": "10.1.x",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^5.0.1",
     "eslint": "6.8.x",
     "eslint-config-airbnb-base": "14.1.x",
     "eslint-plugin-import": "2.20.x",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
-    "phaser": "^3.24.1",
+    "jest": "^26.6.3",
+    "jest-canvas-mock": "^2.3.0",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
     "stylelint": "13.3.x",
     "stylelint-config-standard": "20.0.x",
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "3.17.x",
     "webpack": "^5.10.0",
     "webpack-cli": "^4.2.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "babel-polyfill": "^6.26.0",
+    "node-fetch": "^2.6.1",
+    "phaser": "^3.24.1",
+    "regenerator-runtime": "^0.13.7"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "transform": {
+      "\\.[jt]sx?$": "babel-jest"
+    },
+    "setupFilesAfterEnv": [
+      "./src/setupTests.js"
+    ],
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
   }
 }

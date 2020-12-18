@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Kranky&display=swap');
+
+.parent {
+  font-family: 'Kranky', cursive;
+  text-align: center;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+form {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: aquamarine;
+  color:black;
+  left: 0;
+  top: 0;
+  font-family: 'Kranky', cursive;
+  font-size: larger;
+  text-align: center;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form > input,
+form > label {
+  width: 50%;
+  margin: 1em auto;
+  text-align: center;
+  height: 3em;
+  font-family: 'Kranky', cursive;
+  font-size: larger;
+}
+
+.remove {
+  display: none;
+}

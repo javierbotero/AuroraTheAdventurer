@@ -2,26 +2,37 @@
 
 # Aurora The Adventurer #
 
-Aurora the adventurer is a little girl that likes nature and explore it. Aurora will have to collect all garbage that finds on the way to the indigenous tribe, but she must be careful with the jungle because any beast can bit her and make her lose her path. This game is developed using Phaser and Webpack, with the help of ES6 modules syntax and organization. The project is being built, so some links are just placeholders.
+Aurora the adventurer is a little girl that likes nature and explore it. Aurora will have to collect all garbage that finds on the way to the indigenous tribe, but she must be careful with the forest because there are evil spider bots. This game is developed using Phaser and Webpack, with the help of ES6 modules syntax and organization.
 
 ## Live Preview
 
-[Aurora the Adventurer Game]()
-![Screenshot Adventurer Game]()
+[Aurora the Adventurer Game](https://javierbotero.github.io/AuroraTheAdventurer/)
+![Screenshot Adventurer Game](./src/assets/gamePic.png)
 
 ## Built With
 
+- Phaser
+- Tiled
 - Webpack
 - Javascript
 - CSS
-- HTML5
+- Jest
+- Babel
+
+## Instructions
+
+You can move Aurora with the arrows of your keyboard, try to collect as much plastic as possible to save the forest. Make sure to avoid the spider bots too, they are evil entities ready to tackle human lives.
+
+## Requirements
+
+- NodeJS
 
 ## Getting start
 
 In order to start with the project:
 
 1. Install npm in your machine.
-2. Clone [this repository](https://github.com/javierbotero/todolist-App)
+2. Clone [this repository](https://github.com/javierbotero/AuroraTheAdventurer.git)
 3. cd inside the project
 
 4. Run
@@ -29,6 +40,11 @@ In order to start with the project:
   npm i
 ```
 in the terminal to install the dependencies.
+5. Run
+```
+  npm run watch
+```
+And you will be ready to play in your local environment
 
 
 ## Authors
@@ -43,6 +59,17 @@ in the terminal to install the dependencies.
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
+
+## Designs
+
+- Design of the character made by diamonddmgirl
+[more of her work on opengameart.org](https://opengameart.org/users/diamonddmgirl)
+
+- Recycle items art by Clint Bellanger
+[more of his work on opengameart.org](https://opengameart.org/content/recycle-items-set)
+
+- Design of the character spider bot by san2356
+[more of his work on opengameart.org](https://opengameart.org/users/san2356)
 
 ## Show your support
 
