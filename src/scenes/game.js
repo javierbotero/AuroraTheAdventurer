@@ -91,10 +91,7 @@ export default class Game extends Phaser.Scene {
       callback: this.gameOver,
       callbackScope: this,
     });
-    this.myInterval = setInterval(() => { this.releaseRobot(this.player); }, 3000);
-    const { width, height } = this.myCanvas;
-    this.arrowLeft = this.physics.add.sprite(width / 2, height - 100, 'arrow1').setInteractive();
-    console.log(this.arrowLeft);
+    this.myInterval = setInterval(() => { this.releaseRobot(this.player); }, 4000);
   }
 
   update() {
@@ -114,16 +111,6 @@ export default class Game extends Phaser.Scene {
     } else {
       this.player.anims.stop();
     }
-    if(this.arrowLeft.isDown) {
-      this.arrowLeft.setTexture('arrow2');
-      this.player.body.setVelocityX(-200);
-      this.player.anims.play('left', true);
-    }
-    // this.arrowLeft.on('pointerover', () => {
-    //   this.arrowLeft.setTexture('arrow2');
-    //   this.player.body.setVelocityX(-200);
-    //   this.player.anims.play('left', true);
-    // });
   }
 
   async gameOver() {
